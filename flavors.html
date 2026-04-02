@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="style.css">
+   <title>Flavor Gallery - Sugar & Spice</title>
+</head>
+<body>
+   <header>
+       <h1>Our Flavor Gallery</h1>
+       <p>Take a look at our "Designer" creations</p>
+   </header>
+   <nav>
+       <a href="index.html">Home</a>
+       <a href="about.html">About</a>
+       <a href="flavors.html">Flavors</a>
+       <a href="order.html">Order Now</a>
+   </nav>
+
+
+   <div class="container">
+       <!-- DESIGNER SECTION -->
+       <h2 class="section-title">Designer & Specialty</h2>
+       <div class="flavor-grid" id="designer-gallery">
+           <!-- Images and titles will be generated here -->
+       </div>
+
+
+       <!-- FILLED SECTION -->
+       <h2 class="section-title">Filled & Bismarks</h2>
+       <div class="flavor-grid" id="filled-gallery"></div>
+
+
+       <!-- CLASSIC SECTION -->
+       <h2 class="section-title">Classic & Traditional</h2>
+       <div class="flavor-grid" id="classic-gallery"></div>
+   </div>
+
+
+   <script>
+       // Data for all flavors
+       const designerFlavors = [
+           "Banana Split", "Cotton Candy Sprinkles", "Turtle Sundae", "Oreo Cheesecake",
+           "Cookies & Cream", "Apple Streusel", "Butterfinger", "Funky Monkey",
+           "S'Mores", "Bubble Gum Sprinkles", "Oreo Fluff", "Chocolate Toffee Bar"
+       ];
+      
+       const filledFlavors = [
+           "Chocolate Covered Cream", "Custard Filled", "Raspberry Filled",
+           "Lemon Filled", "Coconut Custard", "Banana Cream Pie"
+       ];
+
+
+       const classicFlavors = [
+           "Glazed", "Chocolate Glazed", "Longjohn", "Cinnamon Twist",
+           "Blueberry Cake", "Crumb Cake", "Powdered Glazed"
+       ];
+
+
+       // Function to create the HTML cards with image spots
+       function displayFlavors(list, containerId, color) {
+           const container = document.getElementById(containerId);
+           list.forEach(flavor => {
+               const card = document.createElement('div');
+               card.className = 'card flavor-card';
+               // Replace the placeholder URL with your actual image paths later
+               card.innerHTML = `
+                   <div class="img-container">
+                       <img src="https://via.placeholder.com{flavor.replace(/ /g, '+')}" alt="${flavor}">
+                   </div>
+                   <h4>${flavor}</h4>
+               `;
+               container.appendChild(card);
+           });
+       }
+
+
+       // Run the display functions
+       displayFlavors(designerFlavors, 'designer-gallery');
+       displayFlavors(filledFlavors, 'filled-gallery');
+       displayFlavors(classicFlavors, 'classic-gallery');
+   </script>
+</body>
+</html>
+
+
+
