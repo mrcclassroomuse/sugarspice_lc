@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <link rel="stylesheet" href="style.css">
+   <title>Order Online - Sugar & Spice</title>
+</head>
+<body>
+   <header><h1>Sugar & Spice Online Ordering</h1></header>
+   <nav>
+       <a href="index.html">Home</a>
+       <a href="about.html">About</a>
+       <a href="flavors.html">Flavors</a>
+       <a href="order.html">Order Now</a>
+   </nav>
+
+
+   <div class="container">
+       <h2 class="section-title">Designer Donuts ($2.50)</h2>
+       <div class="flavor-grid" id="designer-list"></div>
+
+
+       <h2 class="section-title">Filled & Specialty ($2.00)</h2>
+       <div class="flavor-grid" id="filled-list"></div>
+
+
+       <h2 class="section-title">Classic Favorites ($1.50)</h2>
+       <div class="flavor-grid" id="classic-list"></div>
+
+
+       <!-- SHOPPING CART SECTION -->
+       <div id="cart-container">
+           <div style="display: flex; justify-content: space-between; align-items: center;">
+               <h3>Your Donut Box</h3>
+               <button onclick="clearCart()" class="clear-btn">Clear Box</button>
+           </div>
+          
+           <p id="dozen-tracker" style="color: #ff69b4; font-weight: bold; margin-bottom: 10px;"></p>
+          
+           <ul id="cart-items" style="list-style: none; padding: 0;"></ul>
+          
+           <div style="margin: 15px 0;">
+               <label style="font-size: 0.8rem; display: block; margin-bottom: 5px;">Pickup Time (Shop closes 12pm/2pm):</label>
+               <select id="pickup-time" style="width: 100%; padding: 8px;">
+                   <option value="">-- Select Time --</option>
+                   <option value="7:00 AM">7:00 AM</option>
+                   <option value="9:00 AM">9:00 AM</option>
+                   <option value="11:00 AM">11:00 AM</option>
+               </select>
+           </div>
+
+
+           <div style="background: #f9f9f9; padding: 10px; border-radius: 5px;">
+               <p><strong>Total Items:</strong> <span id="item-count">0</span></p>
+               <p><strong>Order Total: $<span id="total">0.00</span></strong></p>
+           </div>
+          
+           <button class="checkout-btn" onclick="checkout()">Submit Pickup Order</button>
+       </div>
+   </div>
+
+
+   <script src="script.js"></script>
+   <script>
+       // These lists match the Sugar & Spice menu
+       const designers = ["Banana Split", "Cotton Candy", "Turtle Sundae", "Oreo Cheesecake", "Cookies & Cream", "Apple Streusel", "Butterfinger", "Funky Monkey", "S'Mores", "Bubble Gum", "Oreo Fluff", "Toffee Bar"];
+       const filled = ["Choc. Covered Cream", "Custard Filled", "Raspberry Filled", "Lemon Filled", "Coconut Custard", "Banana Cream", "Caramel Cream", "Apple Critter"];
+       const classics = ["Glazed", "Choc. Glazed", "Longjohn", "Cinnamon Twist", "Blueberry Cake", "Crumb Cake", "Powdered", "Maple Cream", "Old Fashioned"];
+
+
+       function buildMenu(list, elementId, price) {
+           const div = document.getElementById(elementId);
+           list.forEach(name => {
+               div.innerHTML += `
+                   <div class="card text-card">
+                       <h4>${name}</h4>
+                       <p>$${price.toFixed(2)}</p>
+                       <button onclick="addToCart('${name}', ${price})">Add to Box</button>
+                   </div>
+               `;
+           });
+       }
+
+
+       buildMenu(designers, 'designer-list', 2.50);
+       buildMenu(filled, 'filled-list', 2.00);
+       buildMenu(classics, 'classic-list', 1.50);
+       updateCartDisplay(); // Refresh state on load
+   </script>
+</body>
+</html>
+
+
+
